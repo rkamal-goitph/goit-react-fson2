@@ -4,8 +4,6 @@
   padding: 10px;
   border-radius: 5px;
   max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .menuItemImage {
@@ -33,18 +31,22 @@
   color: #333;
 }
 
-.available .menuItemIcon {
+.available {
+  composes: menuItemIcon;
   color: lightseagreen;
 }
 
-.fewLeft .menuItemIcon {
+.fewLeft {
+  composes: menuItemIcon;
   color: orange;
 }
 
-.notAvailable .menuItemIcon {
+.notAvailable {
+  composes: menuItemIcon;
   color: crimson;
 }
 
-.seasonal .menuItemIcon {
+.seasonal {
+  composes: menuItemIcon;
   color: blue;
 }
