@@ -2,10 +2,15 @@ import PropTypes from 'prop-types';
 import MenuItem from 'components/MenuItem/MenuItem';
 
 export const MenuItemList = ({ salads }) => {
+  const styles = {
+    container: { padding: '20px' },
+    loginMessage: { fontSize: '18px', color: 'red', fontWeight: 'bold' },
+  };
+
   const userLoggedIn = true;
 
   return (
-    <div>
+    <div style={styles.container}>
       {userLoggedIn ? (
         salads.map(({ name, description, imageUrl, price }) => (
           <MenuItem
@@ -17,7 +22,7 @@ export const MenuItemList = ({ salads }) => {
           />
         ))
       ) : (
-        <p>
+        <p style={styles.loginMessage}>
           User needs to login first before being able to access the menu items.
         </p>
       )}
