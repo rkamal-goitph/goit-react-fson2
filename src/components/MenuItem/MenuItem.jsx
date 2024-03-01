@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import './MenuItem.css'; // Import the CSS stylesheet
+import clsx from 'clsx';
+import './MenuItem.css'; // Ensure the stylesheet is imported
 
 const getClassNameForAvailability = availability => {
   switch (availability) {
@@ -19,13 +20,22 @@ const getClassNameForAvailability = availability => {
 };
 
 const MenuItem = ({ name, description, imageUrl, price, availability }) => {
-  const availabilityClass = getClassNameForAvailability(availability);
+  // Generate the dynamic class name for the availability icon
+  const menuItemIconClassName = clsx(
+    'menuItemIcon',
+    getClassNameForAvailability(availability)
+  );
 
   return (
-    <div className={`menuItemContainer ${availabilityClass}`}>
+    <div
+      className={`menuItemContainer ${getClassNameForAvailability(
+        availability
+      )}`}
+    >
       <img src={imageUrl} alt={name} className="menuItemImage" />
       <h2 className="menuItemName">
-        <AiFillCheckCircle className={`menuItemIcon ${availabilityClass}`} />
+        {/* Apply the dynamically generated class name */}
+        <AiFillCheckCircle className={menuItemIconClassName} />
         {name}
       </h2>
       <p className="menuItemDescription">{description}</p>
