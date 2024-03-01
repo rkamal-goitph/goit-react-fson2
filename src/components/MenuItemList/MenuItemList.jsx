@@ -1,18 +1,26 @@
 import PropTypes from 'prop-types';
 import MenuItem from 'components/MenuItem/MenuItem';
 
-const MenuItemList = ({ salads }) => {
+export const MenuItemList = ({ salads }) => {
+  const userLoggedIn = true;
+
   return (
     <div>
-      {salads.map(salad => (
-        <MenuItem
-          key={salad.name}
-          name={salad.name}
-          description={salad.description}
-          imageUrl={salad.imageUrl}
-          price={salad.price.individual} // This line is correct as per your original code
-        />
-      ))}
+      {userLoggedIn ? (
+        salads.map(({ name, description, imageUrl, price }) => (
+          <MenuItem
+            key={name}
+            name={name}
+            description={description}
+            imageUrl={imageUrl}
+            price={price}
+          />
+        ))
+      ) : (
+        <p>
+          User needs to login first before being able to access the menu items.
+        </p>
+      )}
     </div>
   );
 };
