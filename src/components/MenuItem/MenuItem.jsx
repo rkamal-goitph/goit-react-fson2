@@ -1,45 +1,35 @@
+import React from 'react';
 import PropTypes from 'prop-types';
+import { AiFillCheckCircle } from 'react-icons/ai';
+import './MenuItem.css'; // Import the CSS stylesheet
 
-const getBgColor = availability => {
+const getClassNameForAvailability = availability => {
   switch (availability) {
     case 'Available':
-      return '#c5e8d7';
+      return 'available';
     case 'Few Left':
-      return '#f7e2bc';
+      return 'fewLeft';
     case 'Not Available':
-      return '#e8c5c6';
+      return 'notAvailable';
     case 'Seasonal':
-      return '#c5d4e8';
+      return 'seasonal';
     default:
-      throw new Error(`Unsupported availability status - ${availability}`);
+      return '';
   }
 };
 
 const MenuItem = ({ name, description, imageUrl, price, availability }) => {
-  // Inline styles for each element
-  const styles = {
-    container: {
-      marginBottom: '20px',
-      border: '1px solid #ccc',
-      padding: '10px',
-      borderRadius: '5px',
-      maxWidth: '400px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      backgroundColor: getBgColor(availability),
-    },
-    image: { height: '400px', width: '100%', objectFit: 'cover' },
-    name: { fontSize: '24px', fontWeight: 'bold' },
-    description: { fontSize: '16px', color: '#666' },
-    price: { fontSize: '18px', color: '#333' },
-  };
+  const availabilityClass = getClassNameForAvailability(availability);
 
   return (
-    <div style={styles.container}>
-      <img src={imageUrl} alt={name} style={styles.image} />
-      <h2 style={styles.name}>{name}</h2>
-      <p style={styles.description}>{description}</p>
-      <p style={styles.price}>Price: ${price.individual.toFixed(2)}</p>
+    <div className={`menuItemContainer ${availabilityClass}`}>
+      <img src={imageUrl} alt={name} className="menuItemImage" />
+      <h2 className="menuItemName">
+        <AiFillCheckCircle className={`menuItemIcon ${availabilityClass}`} />
+        {name}
+      </h2>
+      <p className="menuItemDescription">{description}</p>
+      <p className="menuItemPrice">Price: ${price.individual.toFixed(2)}</p>
     </div>
   );
 };
@@ -51,6 +41,7 @@ MenuItem.propTypes = {
   price: PropTypes.shape({
     individual: PropTypes.number.isRequired,
   }).isRequired,
+  availability: PropTypes.string.isRequired,
 };
 
 export default MenuItem;

@@ -1,32 +1,21 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from 'components/MenuItem/MenuItem';
+import MenuItem from 'components/MenuItem/MenuItem'; // Update the path as needed
+import './MenuItemList.css'; // Import the CSS stylesheet
 
 export const MenuItemList = ({ salads }) => {
-  const styles = {
-    container: { padding: '20px' },
-    loginMessage: { fontSize: '18px', color: 'red', fontWeight: 'bold' },
-  };
-
-  const userLoggedIn = true;
-
   return (
-    <div style={styles.container}>
-      {userLoggedIn ? (
-        salads.map(({ name, description, imageUrl, price, availability }) => (
-          <MenuItem
-            key={name}
-            name={name}
-            description={description}
-            imageUrl={imageUrl}
-            price={price}
-            availability={availability}
-          />
-        ))
-      ) : (
-        <p style={styles.loginMessage}>
-          User needs to login first before being able to access the menu items.
-        </p>
-      )}
+    <div className="menuItemListContainer">
+      {salads.map(({ name, description, imageUrl, price, availability }) => (
+        <MenuItem
+          key={name}
+          name={name}
+          description={description}
+          imageUrl={imageUrl}
+          price={price}
+          availability={availability}
+        />
+      ))}
     </div>
   );
 };
@@ -40,6 +29,7 @@ MenuItemList.propTypes = {
       price: PropTypes.shape({
         individual: PropTypes.number.isRequired,
       }).isRequired,
+      availability: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

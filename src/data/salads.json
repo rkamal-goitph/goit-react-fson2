@@ -33,7 +33,12 @@
       "Large": 12.95,
       "Family": 21.95
     },
-    "availability": "Seasonal"
+    "availability": "Seasonal",
+    "specialNote": {
+      "noteType": "customerFavorite",
+      "highlighted": false,
+      "emphasized": true
+    }
   },
   {
     "name": "Garden Salad",
@@ -57,6 +62,11 @@
       "Large": 12.95,
       "Family": 21.95
     },
-    "availability": "Available"
+    "availability": "Available",
+    "specialNote": {
+      "noteType": "healthChoice",
+      "highlighted": true,
+      "emphasized": true
+    }
   }
 ]
