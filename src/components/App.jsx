@@ -1,10 +1,13 @@
 import MenuItemList from './MenuItemList/MenuItemList';
+import Menu from './Menu/Menu';
 import salads from '../data/salads.json';
 
 export const App = () => {
   return (
     <div>
-      <MenuItemList salads={salads} />
+      <Menu>
+        <MenuItemList salads={salads} />
+      </Menu>
     </div>
   );
 };
