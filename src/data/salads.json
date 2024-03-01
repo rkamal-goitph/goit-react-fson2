@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Greek Salad",
+    "description": "Romaine blend, feta cheese, red onions, beets, mild peppers, black olives, grape tomatoes. Served with Nikki\u2019s Greek dressing.",
+    "imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/08/Greek-Salad-6-1.jpg",
+    "price": {
+      "individual": 5.25,
+      "Small": 7.95,
+      "Large": 10.45,
+      "Family": 18.25
+    }
+  },
+  {
+    "name": "Antipasto Salad",
+    "description": "Romaine blend, mozzarella cheese, ham, salami, red onions, black olives, mild peppers, grape tomatoes. Served with Italian dressing.",
+    "imageUrl": "https://www.the-girl-who-ate-everything.com/wp-content/uploads/2019/10/antipasto-salad-001.jpg",
+    "price": {
+      "individual": 6.95,
+      "Small": 10.45,
+      "Large": 12.95,
+      "Family": 21.95
+    }
+  },
+  {
+    "name": "Chef Salad",
+    "description": "Romaine blend, ham, turkey, mozzarella cheese, grape tomatoes. Served with Ranch dressing.",
+    "imageUrl": "https://www.deliciousmeetshealthy.com/wp-content/uploads/2020/06/Chef-Salad-4.jpg",
+    "price": {
+      "individual": 6.95,
+      "Small": 10.45,
+      "Large": 12.95,
+      "Family": 21.95
+    }
+  },
+  {
+    "name": "Garden Salad",
+    "description": "Romaine blend, spinach leaves, red onions, cucumbers, grape tomatoes, cheddar cheese. Served with Italian dressing.",
+    "imageUrl": "https://feelgoodfoodie.net/wp-content/uploads/2023/02/Everyday-Garden-Salad-07.jpg",
+    "price": {
+      "individual": 5.25,
+      "Small": 7.95,
+      "Large": 10.45,
+      "Family": 18.25
+    }
+  },
+  {
+    "name": "Cobb Salad",
+    "description": "Romaine blend, spinach leaves, turkey, bacon, egg, grape tomatoes, cheddar cheese. Served with Raspberry Vinaigrette dressing.",
+    "imageUrl": "https://www.paleorunningmomma.com/wp-content/uploads/2020/05/chicken-cobb-salad_-6.jpg",
+    "price": {
+      "individual": 6.95,
+      "Small": 10.45,
+      "Large": 12.95,
+      "Family": 21.95
+    }
+  }
+]
