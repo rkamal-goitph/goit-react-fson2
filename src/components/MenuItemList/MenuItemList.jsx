@@ -12,13 +12,14 @@ export const MenuItemList = ({ salads }) => {
   return (
     <div style={styles.container}>
       {userLoggedIn ? (
-        salads.map(({ name, description, imageUrl, price }) => (
+        salads.map(({ name, description, imageUrl, price, availability }) => (
           <MenuItem
             key={name}
             name={name}
             description={description}
             imageUrl={imageUrl}
             price={price}
+            availability={availability}
           />
         ))
       ) : (
