@@ -5,7 +5,7 @@ import salads from '../data/salads.json';
 export const App = () => {
   return (
     <div>
-      <Menu>
+      <Menu title="Salads Menu">
         <MenuItemList salads={salads} />
       </Menu>
     </div>
