@@ -1,13 +1,18 @@
+import React from 'react';
 import MenuItemList from './MenuItemList/MenuItemList';
 import Menu from './Menu/Menu';
 import salads from '../data/salads.json';
 
-export const App = () => {
-  return (
-    <div>
-      <Menu title="Salads Menu">
-        <MenuItemList salads={salads} />
-      </Menu>
-    </div>
-  );
-};
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Menu title="Salads Menu">
+          <MenuItemList salads={salads} />
+        </Menu>
+      </div>
+    );
+  }
+}
+
+export default App;
