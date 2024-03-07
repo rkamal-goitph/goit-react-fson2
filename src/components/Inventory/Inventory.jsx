@@ -34,7 +34,7 @@ export class Inventory extends Component {
 
     return (
       <div className={css.app}>
-        <h2>Shoe Inventory Manager</h2>
+        <h2>Stocks Inventory Manager</h2>
         <InventoryForm addItem={this.addItem} />
         <input
           type="text"
