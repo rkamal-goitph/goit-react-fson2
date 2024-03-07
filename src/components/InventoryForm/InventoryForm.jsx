@@ -1,4 +1,3 @@
-// InventoryForm.js
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
@@ -9,24 +8,22 @@ export class InventoryForm extends Component {
     addItem: PropTypes.func.isRequired,
   };
 
-  state = {
-    name: '',
-    quantity: '',
-  };
-
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  constructor(props) {
+    super(props);
+    this.nameInputRef = React.createRef();
+    this.quantityInputRef = React.createRef();
+  }
 
   handleSubmit = e => {
     e.preventDefault();
     const newItem = {
       id: nanoid(),
-      name: this.state.name,
-      quantity: parseInt(this.state.quantity, 10),
+      name: this.nameInputRef.current.value,
+      quantity: parseInt(this.quantityInputRef.current.value, 10),
     };
     this.props.addItem(newItem);
-    this.setState({ name: '', quantity: '' });
+    this.nameInputRef.current.value = '';
+    this.quantityInputRef.current.value = '';
   };
 
   render() {
@@ -36,8 +33,7 @@ export class InventoryForm extends Component {
           type="text"
           name="name"
           placeholder="Item Name"
-          value={this.state.name}
-          onChange={this.handleChange}
+          ref={this.nameInputRef}
           required
           className={css.input}
         />
@@ -45,8 +41,7 @@ export class InventoryForm extends Component {
           type="number"
           name="quantity"
           placeholder="Stock Quantity"
-          value={this.state.quantity}
-          onChange={this.handleChange}
+          ref={this.quantityInputRef}
           required
           className={css.input}
         />
