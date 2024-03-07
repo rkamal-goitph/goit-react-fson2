@@ -4,6 +4,17 @@ import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from './InventoryForm.module.css';
 
+// Steps
+// 1. Decide on the structure of the components
+// 2. Decide on the states of the components
+// 3. Decide what to render based from each state
+// 4. Decide the actions that alter each state
+// 5. Define the actions that alter each state
+
+// Two Approaches to Dealing with React Forms
+// 1. Uncontrolled components pattern
+// 2. Controlled components pattern
+
 export class InventoryForm extends Component {
   static propTypes = {
     addItem: PropTypes.func.isRequired,
@@ -12,21 +23,6 @@ export class InventoryForm extends Component {
   state = {
     name: '',
     quantity: '',
-  };
-
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const newItem = {
-      id: nanoid(),
-      name: this.state.name,
-      quantity: parseInt(this.state.quantity, 10),
-    };
-    this.props.addItem(newItem);
-    this.setState({ name: '', quantity: '' });
   };
 
   render() {

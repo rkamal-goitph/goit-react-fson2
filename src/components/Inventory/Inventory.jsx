@@ -4,33 +4,21 @@ import { InventoryForm } from 'components/InventoryForm/InventoryForm';
 import { InventoryList } from 'components/InventoryList/InventoryList';
 import css from './Inventory.module.css';
 
+// Steps
+// 1. Decide on the structure of the components
+// 2. Decide on the states of the components
+// 3. Decide what to render based from each state
+// 4. Decide the actions that alter each state
+// 5. Define the actions that alter each state
+
 export class Inventory extends Component {
   state = {
     items: [],
     searchTerm: '',
   };
 
-  addItem = item => {
-    this.setState(prevState => ({
-      items: [...prevState.items, item],
-    }));
-  };
-
-  deleteItem = itemId => {
-    this.setState(prevState => ({
-      items: prevState.items.filter(item => item.id !== itemId),
-    }));
-  };
-
-  updateSearchTerm = term => {
-    this.setState({ searchTerm: term });
-  };
-
   render() {
     const { items, searchTerm } = this.state;
-    const filteredItems = items.filter(item =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     return (
       <div className={css.app}>
@@ -43,7 +31,7 @@ export class Inventory extends Component {
           onChange={e => this.updateSearchTerm(e.target.value)}
           className={css.searchInput}
         />
-        <InventoryList items={filteredItems} deleteItem={this.deleteItem} />
+        <InventoryList items={items} deleteItem={this.deleteItem} />
       </div>
     );
   }
