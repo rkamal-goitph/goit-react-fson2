@@ -1,8 +1,10 @@
 /* InventoryForm.module.css */
 .form {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+  width: 400px;
 }
 
 .input {
