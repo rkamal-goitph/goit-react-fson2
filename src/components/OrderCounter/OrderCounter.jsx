@@ -6,7 +6,7 @@ import OrderStatistics from 'components/OrderStatistics/OrderStatistics';
 
 class OrderCounter extends React.Component {
   static propTypes = {
-    salads: PropTypes.arrayOf(
+    shoes: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         description: PropTypes.string,
@@ -22,8 +22,8 @@ class OrderCounter extends React.Component {
 
     const orders = {};
 
-    props.salads.forEach(salad => {
-      orders[salad.name] = 0;
+    props.shoes.forEach(shoe => {
+      orders[shoe.name] = 0;
     });
 
     this.state = {
@@ -32,11 +32,11 @@ class OrderCounter extends React.Component {
     };
   }
 
-  createOrder = saladName => {
+  createOrder = shoeName => {
     this.setState(prevState => ({
       orders: {
         ...prevState.orders,
-        [saladName]: prevState.orders[saladName] + 1,
+        [shoeName]: prevState.orders[shoeName] + 1,
       },
       totalOrders: prevState.totalOrders + 1,
     }));
@@ -45,8 +45,8 @@ class OrderCounter extends React.Component {
   resetOrders = () => {
     const resetOrders = {};
 
-    Object.keys(this.state.orders).forEach(saladName => {
-      resetOrders[saladName] = 0;
+    Object.keys(this.state.orders).forEach(shoeName => {
+      resetOrders[shoeName] = 0;
     });
 
     this.setState({
@@ -60,7 +60,8 @@ class OrderCounter extends React.Component {
 
     return (
       <div className={styles.container}>
-        <OrderOptions onOrder={this.createOrder} salads={this.props.salads} />
+        <h2>Shoe Order Counter</h2>
+        <OrderOptions onOrder={this.createOrder} shoes={this.props.shoes} />
         <OrderStatistics orders={orders} totalOrders={totalOrders} />
         <button onClick={this.resetOrders} className={styles.resetButton}>
           Reset Orders

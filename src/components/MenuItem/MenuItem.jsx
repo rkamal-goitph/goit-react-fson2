@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import styles from './MenuItem.module.css'; // Ensure the stylesheet is imported
+import styles from './MenuItem.module.css';
 
 class MenuItem extends React.Component {
   getClassNameForAvailability(availability) {

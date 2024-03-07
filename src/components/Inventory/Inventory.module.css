@@ -1,0 +1,18 @@
+/* InventoryApp.module.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 0;
+  background-color: lightblue;
+}
+
+.searchInput {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

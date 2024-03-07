@@ -14,11 +14,11 @@ class OrderStatistics extends Component {
     return totalOrders > 0 ? (
       <div className={styles.statisticsContainer}>
         <h2>Order Statistics</h2>
-        {Object.entries(orders).map(([saladName, count]) => (
-          // [[Antipasto salad, 2], [Chef salad, 3] ]
-          <div key={saladName} className={styles.statisticItem}>
+        {Object.entries(orders).map(([shoeName, count]) => (
+          // [[Antipasto shoe, 2], [Chef shoe, 3] ]
+          <div key={shoeName} className={styles.statisticItem}>
             <p>
-              {saladName}: {count} orders (
+              {shoeName}: {count} orders (
               {totalOrders > 0 ? ((count / totalOrders) * 100).toFixed(2) : 0}%)
             </p>
           </div>

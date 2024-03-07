@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Classic Running Shoes",
+    "description": "Lightweight design, breathable mesh upper, and cushioned insoles for maximum comfort. Available in various colors.",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/dda507d6073c4f44abb5d314d617250e_9366/Ultra_4DFWD_Running_Shoes_Grey_ID1686_HM1.jpg",
+    "price": {
+      "individual": 50.25,
+      "Small": 70.95,
+      "Large": 90.45,
+      "Family": 150.25
+    },
+    "availability": "Available"
+  },
+  {
+    "name": "Leather Sneakers",
+    "description": "High-quality leather upper with a durable rubber sole. Sleek design suitable for casual wear or light sports activities.",
+    "imageUrl": "https://soludos.com/cdn/shop/files/WhiteIbiza4.jpg?v=1693241008&width=1024",
+    "price": {
+      "individual": 60.95,
+      "Small": 80.45,
+      "Large": 100.95,
+      "Family": 170.95
+    },
+    "availability": "Few Left"
+  },
+  {
+    "name": "Trail Hiking Boots",
+    "description": "Robust and waterproof, designed for the toughest terrains. Features enhanced ankle support and grip soles.",
+    "imageUrl": "https://cdn.thewirecutter.com/wp-content/media/2023/12/hikingboots-2048px-7707.jpg?auto=webp&quality=75&width=1024",
+    "price": {
+      "individual": 60.95,
+      "Small": 80.45,
+      "Large": 100.95,
+      "Family": 170.95
+    },
+    "availability": "Seasonal",
+    "specialNote": {
+      "noteType": "customerFavorite",
+      "highlighted": false,
+      "emphasized": true
+    }
+  },
+  {
+    "name": "Elegant Dress Shoes",
+    "description": "Sophisticated design with premium leather, perfect for formal occasions. Offers comfort without compromising style.",
+    "imageUrl": "https://img.ltwebstatic.com/images3_pi/2023/04/20/16819789268e1891c8878a7c50b23c3bc0a373e9d1_thumbnail_720x.jpg",
+    "price": {
+      "individual": 50.25,
+      "Small": 70.95,
+      "Large": 90.45,
+      "Family": 150.25
+    },
+    "availability": "Not Available"
+  },
+  {
+    "name": "Fitness Training Shoes",
+    "description": "Designed for a variety of workouts, featuring flexibility and support. Equipped with shock-absorbing soles.",
+    "imageUrl": "https://dynamic.zacdn.com/iuQGJx8xHH4952YGQhUAve5qV4s=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/world-balance-7708-1930303-6.jpg",
+    "price": {
+      "individual": 60.95,
+      "Small": 80.45,
+      "Large": 100.95,
+      "Family": 170.95
+    },
+    "availability": "Available",
+    "specialNote": {
+      "noteType": "healthChoice",
+      "highlighted": true,
+      "emphasized": true
+    }
+  }
+]

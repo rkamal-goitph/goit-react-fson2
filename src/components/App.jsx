@@ -1,17 +1,19 @@
 import React from 'react';
 import MenuItemList from './MenuItemList/MenuItemList';
 import Menu from './Menu/Menu';
-import salads from '../data/salads.json';
+import shoes from '../data/shoes.json';
 import OrderCounter from './OrderCounter/OrderCounter';
+import { Inventory } from './Inventory/Inventory';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Menu title="Salads Menu">
-          <MenuItemList salads={salads} />
+        <Menu title="Shoe Store">
+          <MenuItemList shoes={shoes} />
         </Menu>
-        <OrderCounter salads={salads} />
+        <OrderCounter shoes={shoes} />
+        <Inventory />
       </div>
     );
   }

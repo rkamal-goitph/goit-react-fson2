@@ -5,11 +5,11 @@ import styles from './MenuItemList.module.css'; // Import as a module
 
 class MenuItemList extends React.Component {
   render() {
-    const { salads } = this.props;
+    const { shoes } = this.props;
 
     return (
       <div className={styles.menuItemListContainer}>
-        {salads.map(({ name, description, imageUrl, price, availability }) => (
+        {shoes.map(({ name, description, imageUrl, price, availability }) => (
           <MenuItem
             key={name}
             name={name}
@@ -25,7 +25,7 @@ class MenuItemList extends React.Component {
 }
 
 MenuItemList.propTypes = {
-  salads: PropTypes.arrayOf(
+  shoes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,

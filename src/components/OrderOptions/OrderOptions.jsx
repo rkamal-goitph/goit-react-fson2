@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class OrderOptions extends Component {
   static propTypes = {
     onOrder: PropTypes.func.isRequired,
-    salads: PropTypes.arrayOf(
+    shoes: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
       })
@@ -13,16 +13,16 @@ class OrderOptions extends Component {
   };
 
   render() {
-    const { onOrder, salads } = this.props;
+    const { onOrder, shoes } = this.props;
     return (
       <div className={styles.optionsContainer}>
-        {salads.map(salad => (
+        {shoes.map(shoe => (
           <button
-            key={salad.name}
-            onClick={() => onOrder(salad.name)}
+            key={shoe.name}
+            onClick={() => onOrder(shoe.name)}
             className={styles.orderButton}
           >
-            Order {salad.name}
+            Order {shoe.name}
           </button>
         ))}
       </div>
