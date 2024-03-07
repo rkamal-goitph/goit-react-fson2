@@ -32,6 +32,8 @@ export class Inventory extends Component {
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    console.log(items);
+
     return (
       <div className={css.app}>
         <h2>Stocks Inventory Manager</h2>
