@@ -1,32 +1,131 @@
-// InventoryApp.js
 import React, { Component } from 'react';
 import { InventoryForm } from 'components/InventoryForm/InventoryForm';
 import { InventoryList } from 'components/InventoryList/InventoryList';
 import css from './Inventory.module.css';
-
-// Steps
-// 1. Decide on the structure of the components
-// 2. Decide on the states of the components
-// 3. Decide what to render based from each state
-// 4. Decide the actions that alter each state
-// 5. Define the actions that alter each state
-
-// We lifted the state up to the inventory component instead of the inventory list
-// so that the inventory form can interact with the state in the inventory component
-
-// we then pass down the state to the inventory list component as props
-// so that we can render then in our inventory list component
-
-// PROPS --> data flow direction is parent to child
-// STATES --> data flow maybe lifted from child to parent so that all children have access to the data
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class Inventory extends Component {
-  state = {
-    items: [],
-    searchTerm: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [
+        {
+          id: '1',
+          name: 'Running Shoes',
+          quantity: 5,
+          isInStock: true,
+          condition: 'new',
+          category: 'footwear',
+        },
+        {
+          id: '2',
+          name: 'Hiking Backpack',
+          quantity: 3,
+          isInStock: true,
+          condition: 'used',
+          category: 'accessories',
+        },
+        {
+          id: '3',
+          name: 'Thermal Jacket',
+          quantity: 8,
+          isInStock: true,
+          condition: 'new',
+          category: 'clothing',
+        },
+        {
+          id: '4',
+          name: 'Waterproof Boots',
+          quantity: 4,
+          isInStock: false,
+          condition: 'new',
+          category: 'footwear',
+        },
+        {
+          id: '5',
+          name: 'Camping Tent',
+          quantity: 2,
+          isInStock: true,
+          condition: 'used',
+          category: 'accessories',
+        },
+        {
+          id: '6',
+          name: 'Beanie',
+          quantity: 10,
+          isInStock: true,
+          condition: 'new',
+          category: 'clothing',
+        },
+        {
+          id: '7',
+          name: 'Trail Running Socks',
+          quantity: 15,
+          isInStock: true,
+          condition: 'new',
+          category: 'footwear',
+        },
+      ],
+      searchTerm: '',
+    };
+
+    console.log('Constructor: State initialization and method binding');
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps: Sync state to props if needed');
+    // Return null if no state updates are required
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount: Component is mounted');
+    const savedItems = localStorage.getItem('inventoryItems');
+    if (savedItems && JSON.parse(savedItems).length > 0) {
+      this.setState({ items: JSON.parse(savedItems) });
+    }
+
+    // Set up a resize event listener
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentDidUpdate(_prevProps, prevState) {
+    console.log('componentDidUpdate: Component did update');
+    // Save inventory items to local storage if items array changed
+
+    if (prevState.items !== this.state.items) {
+      localStorage.setItem('inventoryItems', JSON.stringify(this.state.items));
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount: Cleanup before component is removed');
+
+    // Remove the resize event listener
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    // For demonstration, log window size to the console
+    console.log(
+      'Window resized to: ',
+      window.innerWidth,
+      'x',
+      window.innerHeight
+    );
   };
 
   addItem = newItem => {
+    // Check for item name uniqueness before adding
+    const nameExists = this.state.items.some(
+      item => item.name === newItem.name
+    );
+    if (nameExists) {
+      toast.error('Item name must be unique');
+      return;
+    }
+
     this.setState(prevState => ({
       items: [...prevState.items, newItem],
     }));
@@ -52,7 +151,7 @@ export class Inventory extends Component {
     return (
       <div className={css.app}>
         <h2>Stocks Inventory Manager</h2>
-        <InventoryForm addItem={this.addItem} />
+        <InventoryForm addItem={this.addItem} items={items} />
         <input
           type="text"
           placeholder="Search Inventory"
@@ -61,6 +160,7 @@ export class Inventory extends Component {
           className={css.searchInput}
         />
         <InventoryList items={filteredItems} deleteItem={this.deleteItem} />
+        <ToastContainer />
       </div>
     );
   }
