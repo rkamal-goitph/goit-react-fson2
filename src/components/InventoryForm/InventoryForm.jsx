@@ -1,48 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from './InventoryForm.module.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
-export class InventoryForm extends Component {
-  static propTypes = {
-    addItem: PropTypes.func.isRequired,
-    items: PropTypes.array.isRequired, // Add items to prop types for checking uniqueness
+export const InventoryForm = ({ addItem, items }) => {
+  const [name, setName] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [isInStock, setIsInStock] = useState(true);
+  const [condition, setCondition] = useState('new');
+  const [category, setCategory] = useState('footwear');
+
+  const handleChange = event => {
+    const { name, value, checked } = event.target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'quantity':
+        setQuantity(value);
+        break;
+      case 'isInStock':
+        setIsInStock(checked);
+        break;
+      case 'condition':
+        setCondition(value);
+        break;
+      case 'category':
+        setCategory(value);
+        break;
+      default:
+        break;
+    }
   };
 
-  state = {
-    name: '',
-    quantity: '',
-    isInStock: true,
-    condition: 'new',
-    category: 'footwear',
-  };
-
-  handleChange = event => {
-    const { name, value, type, checked } = event.target;
-    this.setState({ [name]: type === 'checkbox' ? checked : value });
-  };
-
-  handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    const { name, quantity, isInStock, condition, category } = this.state;
-
-    // Check if item name already exists
-    if (
-      this.props.items.some(
-        item => item.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      toast.error('Item name must be unique', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+    if (items.some(item => item.name.toLowerCase() === name.toLowerCase())) {
+      toast.error('Item name must be unique');
       return;
     }
 
@@ -55,89 +52,89 @@ export class InventoryForm extends Component {
       category,
     };
 
-    this.props.addItem(newItem);
+    addItem(newItem);
 
-    // Reset form state
-    this.setState({
-      name: '',
-      quantity: '',
-      isInStock: true,
-      condition: 'new',
-      category: 'footwear',
-    });
+    setName('');
+    setQuantity('');
+    setIsInStock(true);
+    setCondition('new');
+    setCategory('footwear');
   };
 
-  render() {
-    return (
-      <>
-        <ToastContainer />
-        <form onSubmit={this.handleFormSubmit} className={css.form}>
+  return (
+    <>
+      <ToastContainer />
+      <form onSubmit={handleFormSubmit} className={css.form}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Item Name"
+          value={name}
+          onChange={handleChange}
+          required
+          className={css.input}
+        />
+        <input
+          type="number"
+          name="quantity"
+          placeholder="Stock Quantity"
+          value={quantity}
+          onChange={handleChange}
+          required
+          className={css.input}
+        />
+        <label>
+          <span style={{ marginRight: '10px' }}>In Stock:</span>
           <input
-            type="text"
-            name="name"
-            placeholder="Item Name"
-            value={this.state.name}
-            onChange={this.handleChange}
-            required
-            className={css.input}
+            type="checkbox"
+            name="isInStock"
+            checked={isInStock}
+            onChange={handleChange}
           />
-          <input
-            type="number"
-            name="quantity"
-            placeholder="Stock Quantity"
-            value={this.state.quantity}
-            onChange={this.handleChange}
-            required
-            className={css.input}
-          />
+        </label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          Condition:
           <label>
-            <span style={{ marginRight: '10px' }}>In Stock:</span>
             <input
-              type="checkbox"
-              name="isInStock"
-              checked={this.state.isInStock}
-              onChange={this.handleChange}
+              type="radio"
+              name="condition"
+              value="new"
+              checked={condition === 'new'}
+              onChange={handleChange}
             />
+            <span style={{ marginLeft: '10px' }}>New</span>
           </label>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            Condition:
-            <label>
-              <input
-                type="radio"
-                name="condition"
-                value="new"
-                checked={this.state.condition === 'new'}
-                onChange={this.handleChange}
-              />
-              <span style={{ marginLeft: '10px' }}>New</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="condition"
-                value="used"
-                checked={this.state.condition === 'used'}
-                onChange={this.handleChange}
-              />
-              <span style={{ marginLeft: '10px' }}>Used</span>
-            </label>
-          </div>
-          <select
-            name="category"
-            value={this.state.category}
-            onChange={this.handleChange}
-            className={css.input}
-          >
-            <option value="footwear">Footwear</option>
-            <option value="clothing">Clothing</option>
-            <option value="accessories">Accessories</option>
-          </select>
+          <label>
+            <input
+              type="radio"
+              name="condition"
+              value="used"
+              checked={condition === 'used'}
+              onChange={handleChange}
+            />
+            <span style={{ marginLeft: '10px' }}>Used</span>
+          </label>
+        </div>
+        <select
+          name="category"
+          value={category}
+          onChange={handleChange}
+          className={css.input}
+        >
+          <option value="footwear">Footwear</option>
+          <option value="clothing">Clothing</option>
+          <option value="accessories">Accessories</option>
+        </select>
 
-          <button type="submit" className={css.addButton}>
-            Add Item to Inventory
-          </button>
-        </form>
-      </>
-    );
-  }
-}
+        <button type="submit" className={css.addButton}>
+          Add Item to Inventory
+        </button>
+      </form>
+    </>
+  );
+};
+
+InventoryForm.propTypes = {
+  addItem: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+};

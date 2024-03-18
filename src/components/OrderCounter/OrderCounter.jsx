@@ -4,71 +4,50 @@ import PropTypes from 'prop-types';
 import OrderOptions from 'components/OrderOptions/OrderOptions';
 import OrderStatistics from 'components/OrderStatistics/OrderStatistics';
 
-class OrderCounter extends React.Component {
-  static propTypes = {
-    shoes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string,
-        imageUrl: PropTypes.string,
-        price: PropTypes.object,
-        availability: PropTypes.string,
-      })
-    ).isRequired,
-  };
+const OrderCounter = ({ shoes }) => {
+  const initialOrders = shoes.reduce((orders, shoe) => {
+    orders[shoe.name] = 0;
+    return orders;
+  }, {});
 
-  constructor(props) {
-    super(props);
+  const [orders, setOrders] = useState(initialOrders);
+  const [totalOrders, setTotalOrders] = useState(0);
 
-    const orders = {};
-
-    props.shoes.forEach(shoe => {
-      orders[shoe.name] = 0;
-    });
-
-    this.state = {
-      orders: orders,
-      totalOrders: 0,
-    };
-  }
-
-  createOrder = shoeName => {
-    this.setState(prevState => ({
-      orders: {
-        ...prevState.orders,
-        [shoeName]: prevState.orders[shoeName] + 1,
-      },
-      totalOrders: prevState.totalOrders + 1,
+  const createOrder = shoeName => {
+    setOrders(prevOrders => ({
+      ...prevOrders,
+      [shoeName]: prevOrders[shoeName] + 1,
     }));
+    setTotalOrders(prevTotal => prevTotal + 1);
   };
 
-  resetOrders = () => {
-    const resetOrders = {};
-
-    Object.keys(this.state.orders).forEach(shoeName => {
-      resetOrders[shoeName] = 0;
-    });
-
-    this.setState({
-      orders: resetOrders,
-      totalOrders: 0,
-    });
+  const resetOrders = () => {
+    setOrders(initialOrders);
+    setTotalOrders(0);
   };
 
-  render() {
-    const { orders, totalOrders } = this.state;
+  return (
+    <div className={styles.container}>
+      <h2>Shoe Order Counter</h2>
+      <OrderOptions onOrder={createOrder} shoes={props.shoes} />
+      <OrderStatistics orders={orders} totalOrders={totalOrders} />
+      <button onClick={resetOrders} className={styles.resetButton}>
+        Reset Orders
+      </button>
+    </div>
+  );
+};
 
-    return (
-      <div className={styles.container}>
-        <h2>Shoe Order Counter</h2>
-        <OrderOptions onOrder={this.createOrder} shoes={this.props.shoes} />
-        <OrderStatistics orders={orders} totalOrders={totalOrders} />
-        <button onClick={this.resetOrders} className={styles.resetButton}>
-          Reset Orders
-        </button>
-      </div>
-    );
-  }
-}
+OrderCounter.propTypes = {
+  shoes: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      imageUrl: PropTypes.string,
+      price: PropTypes.object,
+      availability: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 export default OrderCounter;
