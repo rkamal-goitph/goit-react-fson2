@@ -1,5 +1,7 @@
+// ControlledSignUpForm.js
 import React, { useMemo } from 'react';
 import { useSignUpForm } from 'context/SignUpContext';
+import styles from './ControlledSignUpForm.module.css';
 
 export const ControlledSignUpForm = () => {
   const { username, email, password, handleInputChange, handleSubmit } =
@@ -14,43 +16,47 @@ export const ControlledSignUpForm = () => {
   }, [username, email, password]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={username}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={handleInputChange}
-        />
-      </div>
-      {!isFormValid && (
-        <p className="error">Form is invalid. Please check your inputs.</p>
-      )}
-      <button type="submit" disabled={!isFormValid}>
-        Sign Up
-      </button>
-    </form>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={handleInputChange}
+          />
+        </div>
+        {!isFormValid && (
+          <p className={styles.error}>
+            Form is invalid. Please check your inputs.
+          </p>
+        )}
+        <button type="submit" disabled={!isFormValid}>
+          Sign Up
+        </button>
+      </form>
+    </div>
   );
 };

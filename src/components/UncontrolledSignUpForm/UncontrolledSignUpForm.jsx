@@ -1,4 +1,6 @@
+// UncontrolledSignUpForm.js
 import React, { useRef } from 'react';
+import styles from './UncontrolledSignUpForm.module.css';
 
 export const UncontrolledSignUpForm = () => {
   const usernameRef = useRef(null);
@@ -22,25 +24,27 @@ export const UncontrolledSignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" ref={usernameRef} />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" ref={emailRef} />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          ref={passwordRef}
-        />
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input type="text" id="username" name="username" ref={usernameRef} />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" ref={emailRef} />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            ref={passwordRef}
+          />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 };

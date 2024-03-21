@@ -15,12 +15,16 @@ export const SignUpProvider = ({ children }) => {
     event.preventDefault();
 
     // Assuming refs are passed via context to this function
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+    setUsername(event.target.username.value);
+    setEmail(event.target.email.value);
+    setPassword(event.target.password.value);
 
     // Log the collected form data
     console.log('Form Data:', { username, email, password });
+
+    setUsername('');
+    setEmail('');
+    setPassword('');
   };
 
   const handleInputChange = e => {

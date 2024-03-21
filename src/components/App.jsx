@@ -8,13 +8,13 @@ import { UncontrolledSignUpForm } from './UncontrolledSignUpForm/UncontrolledSig
 const App = () => {
   return (
     <>
+      <InventoryProvider>
+        <Inventory />
+      </InventoryProvider>
       <SignUpProvider>
         <ControlledSignUpForm />
         <UncontrolledSignUpForm />
       </SignUpProvider>
-      <InventoryProvider>
-        <Inventory />
-      </InventoryProvider>
     </>
   );
 };
