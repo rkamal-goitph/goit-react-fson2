@@ -1,6 +1,6 @@
 import React from 'react';
-import { Inventory } from './Inventory/Inventory';
-import { InventoryProvider } from 'context/InventoryContext';
+import Inventory from './Inventory/Inventory';
+import { InventoryProvider } from 'context/InventoryProvider';
 import { SignUpProvider } from 'context/SignUpContext';
 import { ControlledSignUpForm } from './ControlledSignUpForm/ControlledSignUpForm';
 import { UncontrolledSignUpForm } from './UncontrolledSignUpForm/UncontrolledSignUpForm';
