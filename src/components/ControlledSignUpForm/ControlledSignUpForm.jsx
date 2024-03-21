@@ -1,10 +1,17 @@
-// SignUpForm.js
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSignUpForm } from 'context/SignUpContext';
 
 export const ControlledSignUpForm = () => {
   const { username, email, password, handleInputChange, handleSubmit } =
     useSignUpForm();
+
+  // Memoize form validation
+  const isFormValid = useMemo(() => {
+    const isUsernameValid = username.length >= 3;
+    const isEmailValid = email.includes('@'); // Simple validation for example
+    const isPasswordValid = password.length >= 8;
+    return isUsernameValid && isEmailValid && isPasswordValid;
+  }, [username, email, password]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -38,7 +45,12 @@ export const ControlledSignUpForm = () => {
           onChange={handleInputChange}
         />
       </div>
-      <button type="submit">Sign Up</button>
+      {!isFormValid && (
+        <p className="error">Form is invalid. Please check your inputs.</p>
+      )}
+      <button type="submit" disabled={!isFormValid}>
+        Sign Up
+      </button>
     </form>
   );
 };
