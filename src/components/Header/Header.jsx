@@ -1,13 +1,26 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import css from './Header.module.css'; // Import your CSS module here
 
 export const Header = () => {
   return (
-    <header>
-      <nav>
-        <Link to="/" end>
+    <header className={css.header}>
+      <nav className={css.nav}>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => (isActive ? css.linkActive : css.link)}
+        >
           Home
-        </Link>
-        <Link to="/movies">Movie</Link>
+        </NavLink>
+        <NavLink
+          to="/movies"
+          className={({ isActive }) => (isActive ? css.linkActive : css.link)}
+          style={({ isActive }) =>
+            isActive ? { textDecoration: 'underline' } : {}
+          }
+        >
+          Movie
+        </NavLink>
       </nav>
     </header>
   );
