@@ -7,25 +7,24 @@ export const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 
-  const fetchDetails = async () => {
-    try {
-      const movie = await fetchMovieDetails(movieId);
-      setMovieDetails(movie);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const movie = await fetchMovieDetails(movieId);
+        setMovieDetails(movie);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchDetails();
   }, [movieId]);
 
   return (
     <>
-      <Link to="/" className={css.goBackLink}>
+      <Link to="/movies" className={css.goBackLink}>
         <button className={css.goBackButton}>⬅ Go back</button>
       </Link>
-
       <div className={css.movieDetailsContainer}>
         <img
           className={css.image}
@@ -49,16 +48,6 @@ export const MovieDetailsPage = () => {
           </p>
         </div>
       </div>
-
-      <hr />
-      <h3>Additional information</h3>
-      <Link to="cast" className={css.link}>
-        <button className={css.infoButton}>Cast</button>
-      </Link>
-      <Link to="reviews" className={css.link}>
-        <button className={css.infoButton}>Reviews</button>
-      </Link>
-      <hr />
     </>
   );
 };

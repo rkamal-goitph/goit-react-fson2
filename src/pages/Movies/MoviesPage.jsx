@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { fetchMovieByQuery } from 'api/api';
 import { MovieList } from 'components/MovieList/MovieList';
+import { Outlet } from 'react-router-dom';
 import css from './MoviesPage.module.css';
 
 export const MoviesPage = () => {
@@ -30,6 +31,7 @@ export const MoviesPage = () => {
         <button onClick={fetchMovies}>Search</button>
       </div>
       <MovieList movies={movies} />
+      <Outlet />
     </div>
   );
 };

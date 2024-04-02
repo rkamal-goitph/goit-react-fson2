@@ -19,6 +19,7 @@ export const fetchMovieByQuery = async movieName => {
 
 export const fetchMovieDetails = async movieId => {
   const response = await axios.get(`movie/${movieId}`);
+  console.log('response from api', response);
   return response.data;
 };
 
