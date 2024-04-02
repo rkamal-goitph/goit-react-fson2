@@ -4,13 +4,15 @@ import { MovieList } from 'components/MovieList/MovieList';
 import css from './MoviesPage.module.css';
 
 export const MoviesPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('Romance');
+  const [movies, setMovies] = useState([]);
 
   const fetchMovies = async () => {
     if (!searchQuery.trim()) return;
     try {
       const movies = await fetchMovieByQuery(searchQuery);
-      console.log(movies);
+      console.log('movies', movies);
+      setMovies(movies);
     } catch (error) {
       console.error(error);
     }
@@ -27,7 +29,7 @@ export const MoviesPage = () => {
         />
         <button onClick={fetchMovies}>Search</button>
       </div>
-      <MovieList movies={[]} />
+      <MovieList movies={movies} />
     </div>
   );
 };

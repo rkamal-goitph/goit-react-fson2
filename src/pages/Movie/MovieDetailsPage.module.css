@@ -1,0 +1,16 @@
+/* MovieDetailsPage.module.css */
+.movieDetailsContainer {
+  display: flex;
+  margin: 20px;
+}
+
+.image {
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.movieDetailsWrap {
+  display: flex;
+  flex-direction: column;
+}
