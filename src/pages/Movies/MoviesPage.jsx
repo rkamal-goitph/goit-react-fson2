@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import css from './MoviesPage.module.css';
 
 export const MoviesPage = () => {
-  const [searchQuery, setSearchQuery] = useState('Romance');
+  const [searchQuery, setSearchQuery] = useState('Friends');
   const [movies, setMovies] = useState([]);
 
   const fetchMovies = async () => {

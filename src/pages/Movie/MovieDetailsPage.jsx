@@ -20,6 +20,10 @@ export const MovieDetailsPage = () => {
     fetchDetails();
   }, [movieId]);
 
+  if (!movieDetails) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Link to="/movies" className={css.goBackLink}>
