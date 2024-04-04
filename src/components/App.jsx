@@ -7,6 +7,9 @@ const MoviesPage = lazy(() => import('pages/Movies/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('pages/Movie/MovieDetailsPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
+const CastList = lazy(() => import('./Cast/CastList'));
+const ReviewList = lazy(() => import('./Reviews/ReviewsList'));
+
 export const App = () => {
   return (
     <div>
@@ -14,7 +17,10 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />} />
-          <Route path="movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<CastList />} />
+            <Route path="reviews" element={<ReviewList />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

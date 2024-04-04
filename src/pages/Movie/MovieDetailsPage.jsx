@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchMovieDetails } from 'api/api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 import css from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
@@ -65,6 +66,9 @@ const MovieDetailsPage = () => {
         <button className={css.infoButton}>Reviews</button>
       </Link>
       <hr />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
