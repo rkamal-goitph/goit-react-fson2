@@ -16,15 +16,8 @@ export const Header = () => {
         <NavLink
           to="/movies"
           className={({ isActive }) => (isActive ? css.linkActive : css.link)}
-          end
         >
           Movies
-        </NavLink>
-        <NavLink
-          to="/movies/details/"
-          className={({ isActive }) => (isActive ? css.linkActive : css.link)}
-        >
-          Movies Details
         </NavLink>
       </nav>
     </header>
