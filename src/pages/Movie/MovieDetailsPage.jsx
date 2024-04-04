@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchMovieDetails } from 'api/api';
+import { useLocation } from 'react-router-dom';
 import css from './MovieDetailsPage.module.css';
 
 export const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const location = useLocation();
+  const backLink = location.state?.from ?? '/movies';
 
   const fetchDetails = async () => {
     try {
@@ -26,7 +29,7 @@ export const MovieDetailsPage = () => {
 
   return (
     <>
-      <Link to="/movies" className={css.goBackLink}>
+      <Link to={backLink} className={css.goBackLink}>
         <button className={css.goBackButton}>⬅ Go back</button>
       </Link>
       <div className={css.movieDetailsContainer}>
