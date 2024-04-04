@@ -4,7 +4,7 @@ import { fetchMovieDetails } from 'api/api';
 import { useLocation } from 'react-router-dom';
 import css from './MovieDetailsPage.module.css';
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
@@ -68,3 +68,5 @@ export const MovieDetailsPage = () => {
     </>
   );
 };
+
+export default MovieDetailsPage;

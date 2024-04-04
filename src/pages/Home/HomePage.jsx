@@ -3,7 +3,7 @@ import { MovieList } from 'components/MovieList/MovieList';
 import { fetchTrendingMovies } from 'api/api';
 import { useState, useEffect } from 'react';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   const loadTrendingMovies = async () => {
@@ -27,3 +27,5 @@ export const HomePage = () => {
     </div>
   );
 };
+
+export default HomePage;
