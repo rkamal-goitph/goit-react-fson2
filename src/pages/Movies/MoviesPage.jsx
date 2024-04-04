@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import { fetchMovieByQuery } from 'api/api';
 import { MovieList } from 'components/MovieList/MovieList';
 import { Outlet } from 'react-router-dom';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   // const [searchQuery, setSearchQuery] = useState('Friends');
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const movieName = searchParams.get('query') ?? 'Friends'; // Default search query is 'Friends'
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const updateQueryString = query => {
     const nextParams = query !== '' ? { query } : {};
@@ -25,6 +26,11 @@ const MoviesPage = () => {
 
     try {
       const movies = await fetchMovieByQuery(movieName);
+
+      if (movies.length === 0) {
+        navigate('/not-found', { replace: true });
+        return;
+      }
       console.log('movies', movies);
       setMovies(movies);
       setIsLoading(false);
