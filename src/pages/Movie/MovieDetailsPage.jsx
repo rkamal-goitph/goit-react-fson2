@@ -7,16 +7,16 @@ export const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 
-  useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const movie = await fetchMovieDetails(movieId);
-        setMovieDetails(movie);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const fetchDetails = async () => {
+    try {
+      const movie = await fetchMovieDetails(movieId);
+      setMovieDetails(movie);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     fetchDetails();
   }, [movieId]);
 
@@ -52,6 +52,16 @@ export const MovieDetailsPage = () => {
           </p>
         </div>
       </div>
+
+      <hr />
+      <h3>Additional information</h3>
+      <Link to="cast" className={css.link}>
+        <button className={css.infoButton}>Cast</button>
+      </Link>
+      <Link to="reviews" className={css.link}>
+        <button className={css.infoButton}>Reviews</button>
+      </Link>
+      <hr />
     </>
   );
 };
