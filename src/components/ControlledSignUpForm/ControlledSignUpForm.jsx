@@ -1,6 +1,6 @@
 // ControlledSignUpForm.js
 import React, { useMemo } from 'react';
-import { useSignUpForm } from 'context/SignUpContext';
+import { useSignUpForm } from 'context/SignUpProvider';
 import styles from './ControlledSignUpForm.module.css';
 
 export const ControlledSignUpForm = () => {
