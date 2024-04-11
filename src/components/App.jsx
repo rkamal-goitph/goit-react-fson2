@@ -1,44 +1,52 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact, deleteContact, setFilter } from '../redux/actions';
+import { getContacts, getFilter } from '../redux/selectors';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]);
-  const [filter, setFilter] = useState('');
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
 
-  const addContact = newContact => {
-    setContacts(prevContacts => [...prevContacts, newContact]);
+  console.log('contacts', contacts);
+  console.log('filter', filter);
+
+  const handleAddContact = newContact => {
+    // Placeholder for future Redux action
+    console.log('Add contact placeholder:', newContact);
+    dispatch(addContact(newContact));
   };
 
-  const deleteContact = id => {
-    setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== id)
-    );
+  const handleDeleteContact = id => {
+    // Placeholder for future Redux action
+    console.log('Delete contact placeholder:', id);
+    dispatch(deleteContact(id));
   };
 
-  const filterContact = () => {
-    const filterLowerCase = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterLowerCase)
-    );
+  const handleSetFilter = newFilter => {
+    // Placeholder for future Redux dispatch to update filter
+    console.log('Filter change placeholder:', newFilter);
+    dispatch(setFilter(newFilter));
   };
+
+  // Calculate filtered contacts directly within the App component
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm addContact={addContact} contacts={contacts} />
+      <ContactForm addContact={handleAddContact} contacts={contacts} />
 
       <h2>Contacts</h2>
-      <Filter filter={filter} setFilter={setFilter} />
+      <Filter filter={filter} setFilter={handleSetFilter} />
       <ContactList
-        filterContact={filterContact}
-        deleteContact={deleteContact}
+        contacts={filteredContacts} // Passing the filteredContacts as prop
+        deleteContact={handleDeleteContact}
       />
     </div>
   );
