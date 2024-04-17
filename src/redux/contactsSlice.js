@@ -1,32 +1,30 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialContactsState = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
+const initialContactsState = {
+  contacts: [],
+  isLoading: false,
+  error: null,
+};
 
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initialContactsState,
   reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare({ name, number }) {
-        return { payload: { id: nanoid(), name, number } };
-      },
+    fetchingInProgress(state) {
+      state.isLoading = true;
     },
-    deleteContact(state, action) {
-      const index = state.findIndex(contact => contact.id === action.payload);
-      if (index !== -1) {
-        state.splice(index, 1);
-      }
+    fetchingSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.contacts = action.payload;
+    },
+    fetchingError(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
 // Export actions
-export const { addContact, deleteContact } = contactsSlice.actions;
+export const { fetchingInProgress, fetchingSuccess, fetchingError } =
+  contactsSlice.actions;
