@@ -20,12 +20,12 @@ export const App = () => {
 
   const handleAddContact = newContact => {
     // Placeholder for future Redux action
-    dispatch(addContact(newContact));
+    // dispatch(addContact(newContact));
   };
 
   const handleDeleteContact = id => {
     // Placeholder for future Redux action
-    dispatch(deleteContact(id));
+    // dispatch(deleteContact(id));
   };
 
   const handleSetFilter = newFilter => {
