@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../redux/operations';
 import { setFilter } from '../redux/filterSlice';
+import { addContact } from '../redux/operations';
 import { getContacts, getFilter } from '../redux/selectors';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
@@ -20,7 +21,7 @@ export const App = () => {
 
   const handleAddContact = newContact => {
     // Placeholder for future Redux action
-    // dispatch(addContact(newContact));
+    dispatch(addContact(newContact));
   };
 
   const handleDeleteContact = id => {
