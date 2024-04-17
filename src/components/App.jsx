@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, deleteContact } from '../redux/contactsSlice';
+import { fetchContacts } from '../redux/operations';
 import { setFilter } from '../redux/filterSlice';
 import { getContacts, getFilter } from '../redux/selectors';
 import { ContactForm } from './ContactForm/ContactForm';
@@ -11,6 +11,12 @@ export const App = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
+
+  console.log('contacts', contacts);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleAddContact = newContact => {
     // Placeholder for future Redux action
