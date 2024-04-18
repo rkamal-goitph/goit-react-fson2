@@ -6,7 +6,6 @@ import { addContact, deleteContact } from '../redux/operations';
 import {
   selectContacts,
   selectIsLoading,
-  selectIsLoading,
   selectFilter,
   selectError,
 } from '../redux/selectors';
