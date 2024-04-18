@@ -4,7 +4,7 @@ import { fetchContacts } from '../redux/operations';
 import { setFilter } from '../redux/filterSlice';
 import { addContact, deleteContact } from '../redux/operations';
 import {
-  selectContacts,
+  selectVisibleContacts,
   selectIsLoading,
   selectFilter,
   selectError,
@@ -14,13 +14,14 @@ import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
-  const contacts = useSelector(selectContacts);
+  const visibleContacts = useSelector(selectVisibleContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const filter = useSelector(selectFilter);
+
   const dispatch = useDispatch();
 
-  console.log('contacts', contacts);
+  console.log('visibleContacts', visibleContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -41,15 +42,10 @@ export const App = () => {
     dispatch(setFilter(newFilter));
   };
 
-  // Calculate filtered contacts directly within the App component
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm addContact={handleAddContact} contacts={contacts} />
+      <ContactForm addContact={handleAddContact} contacts={visibleContacts} />
 
       <h2>Contacts</h2>
       <Filter filter={filter} setFilter={handleSetFilter} />
@@ -57,9 +53,9 @@ export const App = () => {
         <b style={{ display: 'block', padding: '0 0 20px 10px' }}>Loading...</b>
       )}
       {error && <b>Error: {error}</b>}
-      {contacts && (
+      {visibleContacts && (
         <ContactList
-          contacts={filteredContacts}
+          contacts={visibleContacts}
           deleteContact={handleDeleteContact}
         />
       )}
