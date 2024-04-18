@@ -4,20 +4,21 @@ import { fetchContacts } from '../redux/operations';
 import { setFilter } from '../redux/filterSlice';
 import { addContact, deleteContact } from '../redux/operations';
 import {
-  getContacts,
-  getFilter,
-  getIsLoading,
-  getError,
+  selectContacts,
+  selectIsLoading,
+  selectIsLoading,
+  selectFilter,
+  selectError,
 } from '../redux/selectors';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
-  const contacts = useSelector(getContacts);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   console.log('contacts', contacts);
