@@ -1,10 +1,16 @@
-import MenuItemList from './MenuItemList/MenuItemList';
-import salads from '../data/salads.json';
-
 export const App = () => {
   return (
-    <div>
-      <MenuItemList salads={salads} />
+    <div
+      style={{
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 40,
+        color: '#010101',
+      }}
+    >
+      React homework template
     </div>
   );
 };
