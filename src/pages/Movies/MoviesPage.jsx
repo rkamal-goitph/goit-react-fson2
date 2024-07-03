@@ -20,29 +20,29 @@ const MoviesPage = () => {
     setSearchParams(nextParams);
   };
 
-  const fetchMovies = async () => {
-    if (!movieName.trim()) return;
-    setIsLoading(true);
-
-    try {
-      const movies = await fetchMovieByQuery(movieName);
-
-      if (movies.length === 0) {
-        navigate('/not-found', { replace: true });
-        return;
-      }
-      console.log('movies', movies);
-      setMovies(movies);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchMovies = async () => {
+      if (!movieName.trim()) return;
+      setIsLoading(true);
+
+      try {
+        const movies = await fetchMovieByQuery(movieName);
+
+        if (movies.length === 0) {
+          navigate('/not-found', { replace: true });
+          return;
+        }
+        console.log('movies', movies);
+        setMovies(movies);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    };
+
     fetchMovies();
-  }, [movieName]);
+  }, [movieName, navigate]);
 
   return (
     <div>

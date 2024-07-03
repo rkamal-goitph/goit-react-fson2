@@ -11,16 +11,16 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backLink = location.state?.from ?? '/movies';
 
-  const fetchDetails = async () => {
-    try {
-      const movie = await fetchMovieDetails(movieId);
-      setMovieDetails(movie);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const movie = await fetchMovieDetails(movieId);
+        setMovieDetails(movie);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchDetails();
   }, [movieId]);
 

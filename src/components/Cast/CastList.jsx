@@ -7,16 +7,16 @@ const CastList = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
-  const fetchCast = async () => {
-    try {
-      const response = await fetchMovieCast(movieId);
-      setCast(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchCast = async () => {
+      try {
+        const response = await fetchMovieCast(movieId);
+        setCast(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchCast();
   }, [movieId]);
 
