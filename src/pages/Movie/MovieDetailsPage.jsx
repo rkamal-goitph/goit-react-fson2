@@ -9,7 +9,14 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
+
+  // Add console logs for the location object
+  useEffect(() => {
+    console.log('Location object:', location);
+  }, [location]);
+
   const backLink = location.state?.from ?? '/movies';
+  const movieTitleFromState = location.state?.movieTitle;
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -30,9 +37,11 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <Link to={backLink} className={css.goBackLink}>
-        <button className={css.goBackButton}>⬅ Go back</button>
-      </Link>
+      {backLink && (
+        <Link to={backLink} className={css.goBackLink}>
+          <button className={css.goBackButton}>⬅ Go back</button>
+        </Link>
+      )}
       <div className={css.movieDetailsContainer}>
         <img
           className={css.image}
@@ -45,6 +54,11 @@ const MovieDetailsPage = () => {
         />
         <div className={css.movieDetailsWrap}>
           <h1>{movieDetails.title}</h1>
+          {movieTitleFromState && (
+            <h4 className={css.stateInfo}>
+              Passed from state: {movieTitleFromState}
+            </h4>
+          )}
           <h4>User score: {Math.round(movieDetails.vote_average * 10)}%</h4>
           <h2>Overview</h2>
           <p>{movieDetails.overview}</p>

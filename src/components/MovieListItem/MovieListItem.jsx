@@ -10,7 +10,10 @@ export const MovieListItem = ({ id, title }) => {
     <li className={css.movieItem} key={id}>
       <Link
         to={`/movies/${id}`}
-        state={{ from: location }}
+        state={{
+          from: location,
+          movieTitle: 'Random string that i want to pass',
+        }}
         className={css.movieLink}
       >
         <h3>{title}</h3>
