@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { fetchMovieByQuery } from 'api/api';
 import { MovieList } from 'components/MovieList/MovieList';
-import { Outlet } from 'react-router-dom';
-import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
+import {
+  Outlet,
+  useSearchParams,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
-  // const [searchQuery, setSearchQuery] = useState('Friends');
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('query') ?? 'Friends'; // Default search query is 'Friends'
@@ -16,7 +19,6 @@ const MoviesPage = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // this is used for automatically redirecting to another route when a condition is met
   const navigate = useNavigate();
 
   const updateQueryString = query => {
@@ -32,12 +34,6 @@ const MoviesPage = () => {
       try {
         const movies = await fetchMovieByQuery(movieName);
 
-        // condition that demonstrates the use case of useNavigate
-        if (movies.length === 0) {
-          navigate('/not-found');
-          return;
-        }
-
         console.log('movies', movies);
         setMovies(movies);
         setIsLoading(false);
@@ -48,7 +44,12 @@ const MoviesPage = () => {
     };
 
     fetchMovies();
-  }, [movieName, navigate]);
+  }, [movieName]);
+
+  const handleNavigate = (replace = false) => {
+    console.log('Navigating to /test with replace:', replace);
+    navigate('/test', { replace });
+  };
 
   return (
     <div>
@@ -60,7 +61,14 @@ const MoviesPage = () => {
           placeholder="Search movies..."
         />
         {/* Removed the button since the search updates automatically with the input */}
-        {/* <button onClick={fetchMovies}>Search</button> */}
+      </div>
+      <div className={css.buttonWrapper}>
+        <button onClick={() => handleNavigate(false)}>
+          Navigate with replace=false
+        </button>
+        <button onClick={() => handleNavigate(true)}>
+          Navigate with replace=true
+        </button>
       </div>
       {isLoading ? (
         <p style={{ textAlign: 'center' }}>Loading...</p>
