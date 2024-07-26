@@ -4,12 +4,11 @@ import { selectUser, selectIsLoggedIn, selectIsRefreshing } from '../auth/authSe
 
 export const useAuth = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUser);
 
   return {
     isLoggedIn,
-    isRefreshing,
+
     user,
   };
 };
