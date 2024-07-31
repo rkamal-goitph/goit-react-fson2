@@ -9,6 +9,8 @@ import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { ContactsPage } from 'pages/ContactsPage';
 
 export const App = () => {
+  // const isLoggedIn = true;
+
   return (
     <>
       <Routes>
@@ -41,6 +43,16 @@ export const App = () => {
           }
         />
       </Routes>
+
+      {/* conditional rendering */}
+      {/* {isLoggedIn ? (
+        <div>The user is logged in!</div>
+      ) : (
+        <div>The user is logged out!</div>
+      )} */}
     </>
   );
 };
+
+// if isLoggedIn is true, we will show the div with the logged in string.
+// if isLoggedIn is false, we will show the div with the logged out string.
