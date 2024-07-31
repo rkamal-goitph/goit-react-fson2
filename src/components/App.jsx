@@ -14,6 +14,8 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+
+          {/* CONTACTS PAGE IS RESTRICTED AND IS ONLY ACCESSIBLE BY SUCCESSFULLY REGISTERING IN THE REGISTER PAGE */}
           <Route
             path="/register"
             element={
@@ -23,6 +25,7 @@ export const App = () => {
               />
             }
           />
+          {/* CONTACTS PAGE IS RESTRICTED AND IS ONLY ACCESSIBLE BY SUCCESSFULLY LOGGING IN THE LOGIN PAGE */}
           <Route
             path="/login"
             element={
@@ -30,6 +33,7 @@ export const App = () => {
             }
           />
         </Route>
+        {/* CONTACTS PAGE IS PRIVATE AND IS REDIRECTED TO LOGIN PAGE IF USER IS NOT AUTHENTICATED*/}
         <Route
           path="/contacts"
           element={
