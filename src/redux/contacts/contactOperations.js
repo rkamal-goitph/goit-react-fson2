@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://661fbcb516358961cd955014.mockapi.io/api/';
+axios.defaults.baseURL = 'https://node-phonebook-api.onrender.com/api';
 
 // export const fetchContacts = () => async dispatch => {
 //   try {
