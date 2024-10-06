@@ -12,6 +12,7 @@ import {
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
+import { PhonebookHeader } from 'components/PhonebookHeader/PhonebookHeader';
 
 export const ContactsPage = () => {
   const visibleContacts = useSelector(selectVisibleContacts);
@@ -28,25 +29,21 @@ export const ContactsPage = () => {
   }, [dispatch]);
 
   const handleAddContact = newContact => {
-    // Placeholder for future Redux action
     dispatch(addContact(newContact));
   };
 
   const handleDeleteContact = id => {
-    // Placeholder for future Redux action
     dispatch(deleteContact(id));
   };
 
   const handleSetFilter = newFilter => {
-    // Placeholder for future Redux dispatch to update filter
     dispatch(setFilter(newFilter));
   };
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <PhonebookHeader /> {/* Use the new PhonebookHeader component */}
       <ContactForm addContact={handleAddContact} contacts={visibleContacts} />
-
       <h2>Contacts</h2>
       <Filter filter={filter} setFilter={handleSetFilter} />
       {isLoading && (
