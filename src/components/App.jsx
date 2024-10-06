@@ -21,10 +21,7 @@ export const App = () => {
           <Route
             path="/register"
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={RegisterPage}
-              />
+              <RestrictedRoute redirectTo="/login" component={RegisterPage} />
             }
           />
           {/* CONTACTS PAGE IS RESTRICTED AND IS ONLY ACCESSIBLE BY SUCCESSFULLY LOGGING IN THE LOGIN PAGE */}
