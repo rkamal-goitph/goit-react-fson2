@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const ContactForm = ({ addContact, contacts }) => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleNameChange = e => setName(e.target.value);
-  const handleNumberChange = e => setNumber(e.target.value);
+  const handlePhoneChange = e => setPhone(e.target.value);
+  const handleEmailChange = e => setEmail(e.target.value);
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (name.trim() === '' || number.trim() === '') {
+    if (name.trim() === '' || phone.trim() === '') {
       return;
     }
 
@@ -32,13 +34,14 @@ export const ContactForm = ({ addContact, contacts }) => {
     }
 
     addContact({
-      id: nanoid(),
       name: name.trim(),
-      number: number.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
     });
 
     setName('');
-    setNumber('');
+    setEmail('');
+    setPhone('');
   };
 
   return (
@@ -57,15 +60,26 @@ export const ContactForm = ({ addContact, contacts }) => {
       </label>
 
       <label className={css.formField}>
+        <p className={css.formLabel}>Email</p>
+        <input
+          type="email"
+          name="email"
+          required
+          value={email}
+          onChange={handleEmailChange}
+        />
+      </label>
+
+      <label className={css.formField}>
         <p className={css.formLabel}>Number</p>
         <input
           type="tel"
           name="number"
-          pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          pattern="\\(\\d{3}\\)\\s\\d{3}[-\\s]\\d{4}"
+          title="Phone number must follow the format (XXX) XXX-XXXX"
           required
-          value={number}
-          onChange={handleNumberChange}
+          value={phone}
+          onChange={handlePhoneChange}
         />
       </label>
       <button className={css.btnSubmit} type="submit">
@@ -79,9 +93,10 @@ ContactForm.propTypes = {
   addContact: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      // _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     })
   ),
 };

@@ -8,7 +8,7 @@ export const ContactList = ({ contacts, deleteContact }) => {
     <ul className={css.ulBox}>
       {contacts.map(contact => (
         <ContactListItem
-          key={contact.id}
+          key={contact._id}
           filteredContact={contact}
           deleteContact={deleteContact}
         />
@@ -20,9 +20,9 @@ export const ContactList = ({ contacts, deleteContact }) => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
   deleteContact: PropTypes.func.isRequired,
